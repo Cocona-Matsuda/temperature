@@ -3,6 +3,7 @@ import time
 import subprocess
 import re
 import json
+import random
 
 # JSON読み込み
 json_open = open('settings.json','r')
@@ -18,69 +19,72 @@ driver.implicitly_wait(10)
 
 
 # アカウント名
-element = driver.find_element_by_xpath(
-    '/html/body/div/form[1]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div/input[1]')
+time.sleep(10)
+element = driver.find_element_by_xpath('//*[@id="i0116"]')
 element.click()
 element.send_keys(mail)
 driver.implicitly_wait(10)
 
-element = driver.find_element_by_xpath('/html/body/div/form[1]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div/div/div[4]/div/div/div/div/input').click()
-driver.implicitly_wait(10)
+element = driver.find_element_by_xpath('//*[@id="idSIButton9"]').click()
 
 # パスワード
-element = driver.find_element_by_xpath(
-    '/html/body/div/form[1]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]/input')
+time.sleep(10)
+element = driver.find_element_by_xpath('//*[@id="i0118"]')
 element.click()
 element.send_keys(pwd)
 driver.implicitly_wait(10)
-
-element = driver.find_element_by_xpath('/html/body/div/form[1]/div/div/div[2]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div/div/input').click()
+element = driver.find_element_by_xpath('//*[@id="idSIButton9"]').click()
 driver.implicitly_wait(10)
 
 # 多要素認証
 cmd = 'cloak.exe view rrr'
 process = (subprocess.Popen(cmd, stdout=subprocess.PIPE,shell=True).communicate()[0]).decode('utf-8')
 
-element = driver.find_element_by_xpath(
-    '/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[3]/div/div[3]/div/input')
+element = driver.find_element_by_xpath('//*[@id="idTxtBx_SAOTCC_OTC"]')
 element.send_keys(process)
 driver.implicitly_wait(10)
 
+element = driver.find_element_by_xpath('//*[@id="idSubmit_SAOTCC_Continue"]').click()
+time.sleep(10)
 
 # サインインの状態を維持しますか？
-driver.find_element_by_xpath('/html/body/div/form/div/div/div[1]/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div[1]/input').click()
-driver.implicitly_wait(10)
-
+driver.find_element_by_xpath('/html/body/div/form/div/div/div[1]/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div[2]/input').click()
+time.sleep(10)
 
 
 # 選択肢を出す
-driver.find_element_by_xpath('/html/body/div/div/div/div/div/div/div[1]/div[2]/div[2]/div[1]/div/div[2]/div/div/div/i').click()
-driver.implicitly_wait(10)
+driver.find_element_by_xpath('//*[@id="SelectId_0"]/div/i').click()
+time.sleep(10)
+
+# 変数生成
+#rand = '(random.randrange(15, 19, 1))'
 
 # 体温を選択
-driver.find_element_by_xpath('/html/body/div/div/div/div/div/div/div[1]/div[2]/div[2]/div[1]/div/div[2]/div/div/ul/li[4]').click()
-driver.implicitly_wait(10)
+
+driver.find_element_by_xpath('//*[@id="SelectId_0"]/div[2]/div[13]').click()
+time.sleep(10)
 
 
 #体調
 
 # 咳が出る（いいえ）
-driver.find_element_by_xpath('/html/body/div/div/div/div/div/div/div[1]/div[2]/div[2]/div[2]/div/div[2]/div/div[2]/div[3]/input').click()
+driver.find_element_by_xpath('//*[@id="form-container"]/div/div/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[2]/div[3]/input').click()
 driver.implicitly_wait(10)
 
 # 喉が痛い（いいえ）
-driver.find_element_by_xpath('/html/body/div/div/div/div/div/div/div[1]/div[2]/div[2]/div[2]/div/div[2]/div/div[3]/div[3]/input').click()
+
+driver.find_element_by_xpath('//*[@id="form-container"]/div/div/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[3]/div[3]/input').click()
 driver.implicitly_wait(10)
 
 #体がだるい（いいえ）
-driver.find_element_by_xpath('/html/body/div/div/div/div/div/div/div[1]/div[2]/div[2]/div[2]/div/div[2]/div/div[4]/div[3]/input').click()
+driver.find_element_by_xpath('//*[@id="form-container"]/div/div/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[4]/div[3]/input').click()
 driver.implicitly_wait(10)
 
 # 頭痛がある（いいえ）
-driver.find_element_by_xpath('/html/body/div/div/div/div/div/div/div[1]/div[2]/div[2]/div[2]/div/div[2]/div/div[5]/div[3]/input').click()
+
+driver.find_element_by_xpath('//*[@id="form-container"]/div/div/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[2]/div/div[5]/div[3]/input').click()
 driver.implicitly_wait(10)
 
 #送信
-driver.find_element_by_xpath('/html/body/div/div/div/div/div/div/div[1]/div[2]/div[3]/div[1]/button/div').click()
+driver.find_element_by_xpath('//*[@id="form-container"]/div/div/div/div/div[1]/div[2]/div[3]/div[1]/button/div').click()
 driver.implicitly_wait(10)
-
