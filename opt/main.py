@@ -88,4 +88,3 @@ driver.implicitly_wait(10)
 #送信
 driver.find_element_by_xpath('//*[@id="form-container"]/div/div/div/div/div[1]/div[2]/div[3]/div[1]/button/div').click()
 driver.implicitly_wait(10)
-
